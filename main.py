@@ -112,33 +112,41 @@ print("Hello! Welcome to Solar Search! In this program, you will type the name o
 
 # gets user's name and age, while making sure the age is a positive number
 # if not, it will ask for input again.
-while True:
-    try:
-        user_name = input("Enter your name: ")
-        user_age = int(input("Please enter your age: "))
-    except ValueError:
-        print("Sorry, your age cannot be a word.\n"
-              "Please try again.")
-        continue
-    if user_age < 1:
-        print("Sorry, your age can't be negative.\n")
-        print("Please try again.")
-        continue
-    if (user_name.isdigit()): # checks if the user has entered a number for their name
-        print("Sorry, your name cannot be a number.\n")
-        print("Please try again.")
-        continue
-    else:
-        user_age = str(user_age)
-        print("Hello, " + user_name + "! " + str(user_age) + " is the perfect age to learn about "
-                                                             "the planets in our solar system!")
-        break
+def greeting():
+    while True:
+        try:
+            user_age = int(input("Please enter your age: "))
+        except ValueError:
+            print("Sorry, your age must be a number\n"
+                  "Please try again.")
+            continue
+        if user_age < 1:
+            print("Sorry, your age must be positive.\n"
+                  "Please try again.")
+            continue
+        else:
+            user_age = str(user_age)
+            break
 
-#print("Hello, %s! In this program, you will be informed about our solar system!" % user_name)
-# ^ '%s' is a string operator that allows user input to be inserted in the print statement. ^ variable is called here
+    while True:
+        user_name = input("Please enter your name: ")
+        if (user_name.isdigit()):
+            print("Sorry, your name can't be a number.\n"
+                  "Please try again.")
+            continue
+        else:
+            user_name = str(user_name)
+            break
+
+    greeting_statement = "Hello, " + user_name.capitalize() + "! " + user_age + " is the perfect age to learn about " \
+                                                                       "the planets in our solar system!"
+    print(greeting_statement)
+
+greeting() #call to greeting function
 
 print("-----------------------------------------")  # added for UI enhancements
 sleep(1.5)
+
 print("First, choose from the list below to learn about that planet (or the sun!) \n")
 
 #list of planets to show the user their options
@@ -148,114 +156,8 @@ planets = ['Sun', 'Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Ura
 for index, value in enumerate(planets, 1):
     print("{}. {}".format(index, value))
 
-
-def planet_data():
-    planet_selection = input("Please enter a planet: ")
-    if (planet_selection == "Sun" or planet_selection == "sun"):  # SUN
-        print("-----------------------------------------")
-        print("You selected the sun.\n")
-        print("Distance from Earth: %s\n" % sun_dist)
-        print("Temperature: %s\n" % sun_temp)
-        print("Diameter: %s\n" % sun_diam)
-        print("Mass(Earth = 1): %s\n" % sun_mass)
-        print("Fun Fact: %s\n" % sun_fact)
-    elif planet_selection == "Mercury" or planet_selection == "mercury":  # MERCURY
-        print("-----------------------------------------")
-        print("You selected the planet Mercury.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature range: %s\n" % mercury_temp)
-        print("Orbital period: %s\n" % mercury_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % mercury_grav)
-        print("Mean diameter: %s\n" % mercury_diam)
-        print("Mass(Earth = 1): %s\n" % mercury_mass)
-        print("Fun Fact: %s\n" % mercury_fact)
-    elif planet_selection == 'Venus' or planet_selection == 'venus':  # VENUS
-        print("-----------------------------------------")
-        print("You selected the planet Venus.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature: %s\n" % venus_temp)
-        print("Orbital period: %s\n" % venus_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % venus_grav)
-        print("Mean diameter: %s\n" % venus_diam)
-        print("Mass(Earth = 1): %s\n" % venus_mass)
-        print("Fun Fact: %s\n" % venus_fact)
-    elif planet_selection == 'Earth' or planet_selection == 'earth':  # EARTH
-        print("-----------------------------------------")
-        print("You selected the planet Earth.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature range: %s\n" % earth_temp)
-        print("Orbital period: %s\n" % earth_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % earth_grav)
-        print("Mean diameter: %s\n" % earth_diam)
-        print("Mass(Earth = 1): %s\n" % earth_mass)
-        print("Fun Fact: %s\n" % earth_fact)
-    elif planet_selection == 'Mars' or planet_selection == 'mars':  # MARS
-        print("-----------------------------------------")
-        print("You selected the planet Mars.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature range: %s\n" % mars_temp)
-        print("Orbital period: %s\n" % mars_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % mars_grav)
-        print("Mean diameter: %s\n" % mars_diam)
-        print("Mass(Earth = 1): %s\n" % mars_mass)
-        print("Fun Fact: %s\n" % mars_fact)
-    elif planet_selection == 'Jupiter' or planet_selection == 'jupiter':  # JUPITER
-        print("-----------------------------------------")
-        print("You selected the planet Jupiter.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature: %s\n" % jupiter_temp)
-        print("Orbital period: %s\n" % jupiter_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % jupiter_grav)
-        print("Mean diameter: %s\n" % jupiter_diam)
-        print("Mass(Earth = 1): %s\n" % jupiter_mass)
-        print("Fun Fact: %s\n" % jupiter_fact)
-    elif planet_selection == 'Saturn' or planet_selection == 'saturn':  # SATURN
-        print("-----------------------------------------")
-        print("You selected the planet Saturn.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature: %s\n" % saturn_temp)
-        print("Orbital period: %s\n" % saturn_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % saturn_grav)
-        print("Mean diameter: %s\n" % saturn_diam)
-        print("Mass(Earth = 1): %s\n" % saturn_mass)
-        print("Fun Fact: %s\n" % saturn_fact)
-    elif planet_selection == 'Uranus' or planet_selection == 'uranus':  # URANUS
-        print("-----------------------------------------")
-        print("You selected the planet Uranus.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature: %s\n" % uranus_temp)
-        print("Orbital period: %s\n" % uranus_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % uranus_grav)
-        print("Mean diameter: %s\n" % uranus_diam)
-        print("Mass(Earth = 1): %s\n" % uranus_mass)
-        print("Fun Fact: %s\n" % uranus_fact)
-    elif planet_selection == 'Neptune' or planet_selection == 'neptune':  # NEPTUNE
-        print("-----------------------------------------")
-        print("You selected the planet Neptune.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature: %s\n" % neptune_temp)
-        print("Orbital period: %s\n" % neptune_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % neptune_grav)
-        print("Mean diameter: %s\n" % neptune_diam)
-        print("Mass(Earth = 1): %s\n" % neptune_mass)
-        print("Fun Fact: %s\n" % neptune_fact)
-    elif planet_selection == 'Pluto' or planet_selection == 'pluto':  # PLUTO
-        print("-----------------------------------------")
-        print("You selected the 'planet' Pluto.\n")
-        print("Distance from the sun(AU): %s\n" % sun_dist)
-        print("Temperature: %s\n" % pluto_temp)
-        print("Orbital period: %s\n" % pluto_orbit)
-        print("Equatorial surface gravity(Earth = 1): %s\n" % pluto_grav)
-        print("Mean diameter: %s\n" % pluto_diam)
-        print("Mass(Earth = 1): %s\n" % pluto_mass)
-        print("Fun Fact: %s\n" % pluto_fact)
-    else:
-        print("Please check your spelling and try again!")
-
-
 # This function asks the user if they would like to enter another planet:
-while True:
-    planet_data()
+def rerun():
     while True:
         run_choice = input('Would you like to learn about a different planet? (yes/no): ')
         if run_choice == 'Yes' or run_choice == 'yes':
@@ -269,6 +171,123 @@ while True:
         else:
             print("Invalid Input")
             print("Please try again!")
+
+def main():
+    while True:
+        planet_selection = input("Please enter the name of a planet: ")
+        planet_selection = planet_selection.upper()
+        if planet_selection == 'SUN':  # SUN
+            print("-----------------------------------------")
+            print("You selected the sun.\n")
+            print("Distance from Earth: %s\n" % sun_dist)
+            print("Temperature: %s\n" % sun_temp)
+            print("Diameter: %s\n" % sun_diam)
+            print("Mass(Earth = 1): %s\n" % sun_mass)
+            print("Fun Fact: %s\n" % sun_fact)
+            rerun()
+        elif planet_selection == 'MERCURY':  # MERCURY
+            print("-----------------------------------------")
+            print("You selected the planet Mercury.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature range: %s\n" % mercury_temp)
+            print("Orbital period: %s\n" % mercury_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % mercury_grav)
+            print("Mean diameter: %s\n" % mercury_diam)
+            print("Mass(Earth = 1): %s\n" % mercury_mass)
+            print("Fun Fact: %s\n" % mercury_fact)
+            rerun()
+        elif planet_selection == 'VENUS':  # VENUS
+            print("-----------------------------------------")
+            print("You selected the planet Venus.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature: %s\n" % venus_temp)
+            print("Orbital period: %s\n" % venus_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % venus_grav)
+            print("Mean diameter: %s\n" % venus_diam)
+            print("Mass(Earth = 1): %s\n" % venus_mass)
+            print("Fun Fact: %s\n" % venus_fact)
+            rerun()
+        elif planet_selection == 'EARTH':  # EARTH
+            print("-----------------------------------------")
+            print("You selected the planet Earth.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature range: %s\n" % earth_temp)
+            print("Orbital period: %s\n" % earth_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % earth_grav)
+            print("Mean diameter: %s\n" % earth_diam)
+            print("Mass(Earth = 1): %s\n" % earth_mass)
+            print("Fun Fact: %s\n" % earth_fact)
+            rerun()
+        elif planet_selection == 'MARS':  # MARS
+            print("-----------------------------------------")
+            print("You selected the planet Mars.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature range: %s\n" % mars_temp)
+            print("Orbital period: %s\n" % mars_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % mars_grav)
+            print("Mean diameter: %s\n" % mars_diam)
+            print("Mass(Earth = 1): %s\n" % mars_mass)
+            print("Fun Fact: %s\n" % mars_fact)
+            rerun()
+        elif planet_selection == 'JUPITER':  # JUPITER
+            print("-----------------------------------------")
+            print("You selected the planet Jupiter.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature: %s\n" % jupiter_temp)
+            print("Orbital period: %s\n" % jupiter_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % jupiter_grav)
+            print("Mean diameter: %s\n" % jupiter_diam)
+            print("Mass(Earth = 1): %s\n" % jupiter_mass)
+            print("Fun Fact: %s\n" % jupiter_fact)
+            rerun()
+        elif planet_selection == 'SATURN':  # SATURN
+            print("-----------------------------------------")
+            print("You selected the planet Saturn.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature: %s\n" % saturn_temp)
+            print("Orbital period: %s\n" % saturn_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % saturn_grav)
+            print("Mean diameter: %s\n" % saturn_diam)
+            print("Mass(Earth = 1): %s\n" % saturn_mass)
+            print("Fun Fact: %s\n" % saturn_fact)
+            rerun()
+        elif planet_selection == 'URANUS':  # URANUS
+            print("-----------------------------------------")
+            print("You selected the planet Uranus.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature: %s\n" % uranus_temp)
+            print("Orbital period: %s\n" % uranus_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % uranus_grav)
+            print("Mean diameter: %s\n" % uranus_diam)
+            print("Mass(Earth = 1): %s\n" % uranus_mass)
+            print("Fun Fact: %s\n" % uranus_fact)
+            rerun()
+        elif planet_selection == 'NEPTUNE':  # NEPTUNE
+            print("-----------------------------------------")
+            print("You selected the planet Neptune.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature: %s\n" % neptune_temp)
+            print("Orbital period: %s\n" % neptune_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % neptune_grav)
+            print("Mean diameter: %s\n" % neptune_diam)
+            print("Mass(Earth = 1): %s\n" % neptune_mass)
+            print("Fun Fact: %s\n" % neptune_fact)
+            rerun()
+        elif planet_selection == 'PLUTO':  # PLUTO
+            print("-----------------------------------------")
+            print("You selected the 'planet' Pluto.\n")
+            print("Distance from the sun(AU): %s\n" % sun_dist)
+            print("Temperature: %s\n" % pluto_temp)
+            print("Orbital period: %s\n" % pluto_orbit)
+            print("Equatorial surface gravity(Earth = 1): %s\n" % pluto_grav)
+            print("Mean diameter: %s\n" % pluto_diam)
+            print("Mass(Earth = 1): %s\n" % pluto_mass)
+            print("Fun Fact: %s\n" % pluto_fact)
+            rerun()
+        else:
+            print("Please check your spelling and try again!")
+
+main()
 
 '''
 CITATIONS:
